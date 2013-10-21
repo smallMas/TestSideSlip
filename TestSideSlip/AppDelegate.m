@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "MFSideMenuContainerViewController.h"
+#import "MainViewController.h"
+#import "LeftMenuController.h"
 
 @implementation AppDelegate
 
@@ -15,6 +18,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    MainViewController *mainController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    LeftMenuController *menuController = [[LeftMenuController alloc] initWithNibName:@"LeftMenuController" bundle:nil];
+    MFSideMenuContainerViewController *containerController = [MFSideMenuContainerViewController containerWithCenterViewController:mainController leftMenuViewController:menuController rightMenuViewController:nil];
+    
+    self.window.rootViewController = containerController;
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
